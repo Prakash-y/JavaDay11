@@ -1,0 +1,67 @@
+package Day11;
+
+	public class BinaryTree 
+	{
+	    Node root;
+
+	    static class Node {
+	        int data;
+	        Node left, right;
+
+	        Node(int value) {
+	            data = value;
+	            left = right = null;
+	        }
+	    }
+
+	    
+	    public boolean search(int value) 
+	    {
+	        return searchRecursive(root, value);
+	    }
+
+	
+	    private boolean searchRecursive(Node current, int value)
+	    {
+	        if (current == null) {
+	            return false;
+	        }
+
+	        if (current.data == value) {
+	            return true;
+	        }
+
+	        if (value < current.data) {
+	            return searchRecursive(current.left, value);
+	        } else {
+	            return searchRecursive(current.right, value);
+	        }
+	    }
+
+	    
+	    public static void main(String[] args) {
+	        BinaryTree tree = new BinaryTree();
+
+	        
+	        tree.root = new Node(50);
+	        tree.root.left = new Node(30);
+	        tree.root.right = new Node(70);
+	        tree.root.left.left = new Node(20);
+	        tree.root.left.right = new Node(40);
+	        tree.root.right.left = new Node(60);
+	        tree.root.right.right = new Node(80);
+
+	        
+	        boolean isFound = tree.search(63);
+
+	        if (isFound) 
+	        {
+	            System.out.println("Value 63 is found in the binary tree");
+	        } else
+	        {
+	            System.out.println("Value 63 is not found in the binary tree");
+	        }
+	    }
+	
+
+}
